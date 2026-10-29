@@ -1,0 +1,912 @@
+{
+  "info": {
+    "_postman_id": "1aa4ff40-4643-4e4a-b090-068e4f757bd0",
+    "name": "NovaCommerce Order Management API",
+    "description": "Contrato de integración REST para que la plataforma de comercio electrónico NovaCommerce pueda registrar, consultar y actualizar pedidos mediante el Sistema Empresarial de Gestión de Pedidos. Especificación basada en OpenAPI 3.0.3.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51778635",
+    "_collection_link": "https://go.postman.co/collection/51778635-1aa4ff40-4643-4e4a-b090-068e4f757bd0?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "orders",
+      "item": [
+        {
+          "name": "{orderId}",
+          "item": [
+            {
+              "name": "Consultar un pedido específico",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/orders/:orderId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "orderId",
+                      "value": "O-9831",
+                      "description": "Identificador del pedido"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Pedido encontrado",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/:orderId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        ":orderId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orderId",
+                          "value": "O-9831",
+                          "description": "Identificador del pedido"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": \"O-9831\",\n  \"customerId\": \"C-1024\",\n  \"status\": \"CONFIRMED\",\n  \"total\": 129.9\n}"
+                },
+                {
+                  "name": "Identificador con formato inválido",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/:orderId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        ":orderId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orderId",
+                          "value": "O-9831",
+                          "description": "Identificador del pedido"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": \"INVALID_ORDER_ID\",\n  \"message\": \"El identificador debe cumplir el formato O-1234\",\n  \"correlationId\": \"abc-126\"\n}"
+                },
+                {
+                  "name": "Pedido inexistente",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/:orderId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        ":orderId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orderId",
+                          "value": "O-9831",
+                          "description": "Identificador del pedido"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": \"ORDER_NOT_FOUND\",\n  \"message\": \"El pedido O-9999 no existe\",\n  \"correlationId\": \"abc-127\"\n}"
+                },
+                {
+                  "name": "Error inesperado del proveedor",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/:orderId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        ":orderId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orderId",
+                          "value": "O-9831",
+                          "description": "Identificador del pedido"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": \"INTERNAL_ERROR\",\n  \"message\": \"Ocurrió un error inesperado\",\n  \"correlationId\": \"abc-500\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Actualizar el estado de un pedido",
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"CONFIRMED\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders/:orderId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "orderId",
+                      "value": "O-9831",
+                      "description": "Identificador del pedido"
+                    }
+                  ]
+                },
+                "description": "Esta versión del contrato permite actualizar únicamente el estado. Transiciones permitidas: CREATED a CONFIRMED o CANCELLED; CONFIRMED a CANCELLED. Un pedido CANCELLED no admite cambios."
+              },
+              "response": [
+                {
+                  "name": "Estado del pedido actualizado",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"CONFIRMED\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/:orderId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        ":orderId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orderId",
+                          "value": "O-9831",
+                          "description": "Identificador del pedido"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": \"O-9831\",\n  \"customerId\": \"C-1024\",\n  \"status\": \"CONFIRMED\",\n  \"total\": 129.9\n}"
+                },
+                {
+                  "name": "Estado enviado inválido",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"CONFIRMED\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/:orderId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        ":orderId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orderId",
+                          "value": "O-9831",
+                          "description": "Identificador del pedido"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": \"INVALID_STATUS\",\n  \"message\": \"El estado indicado no es válido\",\n  \"correlationId\": \"abc-128\"\n}"
+                },
+                {
+                  "name": "Pedido inexistente",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"CONFIRMED\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/:orderId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        ":orderId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orderId",
+                          "value": "O-9831",
+                          "description": "Identificador del pedido"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": \"ORDER_NOT_FOUND\",\n  \"message\": \"El pedido O-9999 no existe\",\n  \"correlationId\": \"abc-129\"\n}"
+                },
+                {
+                  "name": "Transición de estado no permitida",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"CONFIRMED\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/:orderId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        ":orderId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orderId",
+                          "value": "O-9831",
+                          "description": "Identificador del pedido"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": \"INVALID_STATUS_TRANSITION\",\n  \"message\": \"Un pedido cancelado no puede confirmarse\",\n  \"correlationId\": \"abc-130\"\n}"
+                },
+                {
+                  "name": "Error inesperado del proveedor",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"CONFIRMED\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/:orderId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        ":orderId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orderId",
+                          "value": "O-9831",
+                          "description": "Identificador del pedido"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": \"INTERNAL_ERROR\",\n  \"message\": \"Ocurrió un error inesperado\",\n  \"correlationId\": \"abc-500\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Crear un pedido",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"C-1024\",\n  \"items\": [\n    {\n      \"productId\": \"P-500\",\n      \"quantity\": 2\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Pedido creado",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"C-1024\",\n  \"items\": [\n    {\n      \"productId\": \"P-500\",\n      \"quantity\": 2\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Ruta del pedido creado",
+                    "type": "text/plain"
+                  },
+                  "key": "Location",
+                  "value": "/orders/O-9831"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": \"O-9831\",\n  \"customerId\": \"C-1024\",\n  \"status\": \"CREATED\",\n  \"total\": 129.9\n}"
+            },
+            {
+              "name": "Solicitud con datos inválidos",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"C-1024\",\n  \"items\": [\n    {\n      \"productId\": \"P-500\",\n      \"quantity\": 2\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": \"INVALID_ORDER_REQUEST\",\n  \"message\": \"La cantidad debe ser mayor que cero\",\n  \"correlationId\": \"abc-123\"\n}"
+            },
+            {
+              "name": "Conflicto de negocio por inventario insuficiente",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"C-1024\",\n  \"items\": [\n    {\n      \"productId\": \"P-500\",\n      \"quantity\": 2\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": \"INSUFFICIENT_STOCK\",\n  \"message\": \"El producto P-500 solo tiene 2 unidades disponibles\",\n  \"correlationId\": \"abc-124\"\n}"
+            },
+            {
+              "name": "Error inesperado del proveedor",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"C-1024\",\n  \"items\": [\n    {\n      \"productId\": \"P-500\",\n      \"quantity\": 2\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": \"INTERNAL_ERROR\",\n  \"message\": \"Ocurrió un error inesperado\",\n  \"correlationId\": \"abc-500\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Consultar pedidos filtrados por cliente",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/orders?customerId=C-1024",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "customerId",
+                  "value": "C-1024",
+                  "description": "Identificador del cliente cuyos pedidos se consultarán"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Lista de pedidos del cliente (puede estar vacía)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/orders?customerId=C-1024",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders"
+                  ],
+                  "query": [
+                    {
+                      "description": "Identificador del cliente cuyos pedidos se consultarán",
+                      "key": "customerId",
+                      "value": "C-1024"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": \"O-9831\",\n    \"customerId\": \"C-1024\",\n    \"status\": \"CREATED\",\n    \"total\": 129.9\n  },\n  {\n    \"id\": \"O-9832\",\n    \"customerId\": \"C-1024\",\n    \"status\": \"CONFIRMED\",\n    \"total\": 75.5\n  }\n]"
+            },
+            {
+              "name": "Filtro inválido o ausente",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/orders?customerId=C-1024",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders"
+                  ],
+                  "query": [
+                    {
+                      "description": "Identificador del cliente cuyos pedidos se consultarán",
+                      "key": "customerId",
+                      "value": "C-1024"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": \"INVALID_CUSTOMER_ID\",\n  \"message\": \"Se requiere un identificador de cliente válido\",\n  \"correlationId\": \"abc-125\"\n}"
+            },
+            {
+              "name": "Error inesperado del proveedor",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/orders?customerId=C-1024",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders"
+                  ],
+                  "query": [
+                    {
+                      "description": "Identificador del cliente cuyos pedidos se consultarán",
+                      "key": "customerId",
+                      "value": "C-1024"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": \"INTERNAL_ERROR\",\n  \"message\": \"Ocurrió un error inesperado\",\n  \"correlationId\": \"abc-500\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ]
+}
